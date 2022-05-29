@@ -1,6 +1,6 @@
 export default {
-    G: 'Goalkeeper',
-    D: 'Defender',
-    M: 'Midfield',
-    F: 'Frontline',
+    Goalkeeper: 'G',
+    Defender: 'D',
+    Midfielder: 'M',
+    Frontliner: 'F',
 };

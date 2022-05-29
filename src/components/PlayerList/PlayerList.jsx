@@ -21,7 +21,7 @@ export const PlayerList = () => {
                 <strong>Foot</strong>
             </PlayerListHeader>
             {players.map((player, key) => {
-                return <Player key={key} {...player} />;
+                return <Player key={key} player={player} />;
             })}
         </PlayerListStyled>
     );

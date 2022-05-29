@@ -9,8 +9,3 @@ export const HeaderStyled = styled.header`
     padding: 10px;
     background-color: lightgray;
 `;
-
-export const HeaderImage = styled(Image)`
-        max-height:100%; 
-        max-width:100%;
-`;

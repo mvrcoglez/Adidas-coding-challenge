@@ -13,6 +13,7 @@ const CoachList = () => {
 
     return (
         <CoachListStyled>
+            <h2>Coaches</h2>
             <CoachListHeader>
                 <strong>Photo</strong>
                 <strong>Name</strong>
