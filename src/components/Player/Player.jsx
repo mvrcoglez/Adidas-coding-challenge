@@ -33,7 +33,7 @@ const Player = ({ player }) => {
     };
 
     return (
-        <PlayerStyled>
+        <PlayerStyled data-testid="player">
             <Image src={src} onError={onImageError} height="50px" />
             <span>{player.commonName}</span>
             <span>{renderPosition(player.position)}</span>

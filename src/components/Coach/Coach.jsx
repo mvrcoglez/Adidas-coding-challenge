@@ -17,7 +17,7 @@ const Coach = ({ coach }) => {
     };
 
     return (
-        <CoachStyled>
+        <CoachStyled data-testid="coach">
             <Image src={img} onError={onImageError} height="50px" />
             <span>{commonName}</span>
             <Button onClick={() => dispatch(addCoach(coach))}>Add</Button>

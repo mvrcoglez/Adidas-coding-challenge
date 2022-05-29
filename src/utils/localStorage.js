@@ -3,7 +3,6 @@ export const setItem = (key, value) => {
 };
 
 export const getItem = (key) => {
-    console.log(window);
     return JSON.parse(window ? window.localStorage.getItem(key) : null); 
 };
 

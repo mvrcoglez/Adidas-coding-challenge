@@ -65,7 +65,7 @@ export const teamSlice = createSlice({
                     state.count += 1;
                     break;
                 default: 
-                    console.log('error');
+                    console.error('error');
             }
         },
         deletePlayer: (state, action) => {
@@ -104,7 +104,7 @@ export const teamSlice = createSlice({
                     state.count -= 1;
                     break;
                 default: 
-                    console.log('error')
+                    console.error('error')
             }
 
         }
