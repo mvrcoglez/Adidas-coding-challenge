@@ -8,13 +8,11 @@ export const MainSection = styled.main`
 `;
 
 export const TeamSection = styled.div`
-    display:flex;
+    display: flex;
     flex-direction: column;
     gap: 16px;
-    
+
     @media (min-width: 1024px) {
-        
-        flex-direction:row;
+        flex-direction: row;
     }
-    
 `;

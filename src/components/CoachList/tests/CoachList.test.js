@@ -7,13 +7,12 @@ import { renderWithRedux } from '../../../redux/test-provider/renderWithRedux';
 
 jest.mock('../../../services/SoccerApi/SoccerApiClient');
 
-describe('CoachList/CoachList', () => { 
+describe('CoachList/CoachList', () => {
     it('will show a list of coaches', async () => {
         SoccerClient.coaches.mockResolvedValue(SoccerApiFixtureCoaches);
         renderWithRedux(<CoachList />);
         await waitFor(() => {
             expect(screen.getAllByTestId('coach')).toHaveLength(3);
-        })
-        
-    })
+        });
+    });
 });
