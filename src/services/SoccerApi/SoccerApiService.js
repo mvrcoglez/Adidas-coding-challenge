@@ -1,11 +1,23 @@
+import * as SoccerApiClient from './SoccerApiClient';
+export async function getPlayers(countryId) {
+    const response = await SoccerApiClient.players(countryId);
+    const {data} = response;
 
-// export const get = fetch(`https://api.soccersapi.com/v2.2/leagues/?user=gonzalez.marco95&token=d9fb37588d02c7d7a1b5bb2d1b3f9e97&t=list`)
+    if(!data) {
+        throw new Error('No response data');
+    }
 
-import SoccerApiFixture from "./SoccerApiFixture";
+    const result = data.map((item) => {
+        return {
+            id: item.id,
+            teamId: item.team_id,
+            commonName: item.common_name,
+            name: item.name,
+            foot: item.foot,
+            position: item.position,
+            img: item.img,
+        };
+    });
 
-export async function getPlayers(countryCode) {
-    return await Promise.resolve(SoccerApiFixture);
-    // const response = await fetch(`https://api.soccersapi.com/v2.2/leagues/?user=gonzalez.marco95&token=d9fb37588d02c7d7a1b5bb2d1b3f9e97&t=list&country_id=${countryCode}`);
-    // const body = await response.json();
-    // console.log(body);
+    return result;
 }
