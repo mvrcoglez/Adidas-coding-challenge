@@ -1,16 +1,26 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../atoms/Button/Button';
-import { deleteCoach, deletePlayer } from '../../redux/slices/team.slice';
-import { SelectionListItem, SelectionStyled } from './Selection.styled';
+import { SELECTION_KEY } from '../../constants/teamStorageKey';
+import { deleteCoach, deletePlayer, reset } from '../../redux/slices/team.slice';
+import * as localStorage from '../../utils/localStorage';
+import { ActionsRow, SelectionListItem, SelectionStyled } from './Selection.styled';
 
 const Selection = () => {
     const dispatch = useDispatch();
-    const { coach, goalkeepers, defenders, midfielders, frontliners, count } = useSelector((state) => state.team);
+    const team = useSelector((state) => state.team);
+    const { coach, goalkeepers, defenders, midfielders, frontliners, count } = team;
     console.log({ coach, goalkeepers, defenders, midfielders, frontliners, count });
 
     const deletePlayerButton = (item) => <Button onClick={() => dispatch(deletePlayer(item))}>Del</Button>;
     const deleteCoachButton = () => <Button onClick={() => dispatch(deleteCoach())}>Del</Button>;
+    const saveTeam = () => {
+        localStorage.setItem(SELECTION_KEY, JSON.stringify(team));
+    };
+    const resetTeam = () => {
+        dispatch(reset());
+        localStorage.removeItem(SELECTION_KEY);
+    };
 
     const renderPlayerList = (playerList) => {
         return (
@@ -31,6 +41,11 @@ const Selection = () => {
     return (
         <SelectionStyled>
             <h2>Team ({count}/16)</h2>
+            <ActionsRow>
+                <Button onClick={saveTeam}>Save</Button>
+                <Button onClick={resetTeam}>Reset</Button>
+            </ActionsRow>
+
             <div>
                 <div>
                     <h3>Coach ({coach ? 1 : 0}/1)</h3>

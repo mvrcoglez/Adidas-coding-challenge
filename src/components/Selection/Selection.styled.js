@@ -15,3 +15,9 @@ export const SelectionListItem = styled.li`
     list-style-type: square;
     margin: 5px 0;
 `;
+
+export const ActionsRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+`;

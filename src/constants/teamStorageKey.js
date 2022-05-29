@@ -1,0 +1,1 @@
+export const SELECTION_KEY = 'AD/SELECTION'; 

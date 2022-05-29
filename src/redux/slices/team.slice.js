@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import Position from '../../types/Position';
+import { getItem } from '../../utils/localStorage';
+import { SELECTION_KEY } from '../../constants/teamStorageKey';
 
-const initialState = {
+const defaultState = {
   coach: null,
   goalkeepers : [],
   defenders: [],
@@ -14,10 +16,13 @@ const playerAlreadySet = (list, newPlayer) => {
     return list.reduce((acc, item) => {return acc || newPlayer.id === item.id}, false);
 };
 
+const initialState = getItem(SELECTION_KEY) ?? defaultState;
+
 export const teamSlice = createSlice({
     name: 'team',
     initialState,
     reducers: {
+        reset: () => defaultState,
         addCoach: (state, action) => {
             if (state.coach !== null) return;
             state.coach = action.payload;
@@ -106,6 +111,6 @@ export const teamSlice = createSlice({
     },
 });
 
-export const { addCoach, deleteCoach, addPlayer, deletePlayer } = teamSlice.actions;
+export const { reset, addCoach, deleteCoach, addPlayer, deletePlayer } = teamSlice.actions;
 
 export default teamSlice.reducer;
