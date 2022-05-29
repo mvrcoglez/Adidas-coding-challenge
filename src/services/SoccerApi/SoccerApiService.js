@@ -2,13 +2,12 @@ import * as SoccerApiClient from './SoccerApiClient';
 
 export async function getPlayers(countryId) {
     const response = await SoccerApiClient.players(countryId);
-    const {data} = response;
 
-    if(!data) {
+    if(!response?.data) {
         throw new Error('No response data');
     }
 
-    const result = data.map((player) => {
+    const result = response.data.map((player) => {
         return {
             id: player.id,
             teamId: player.team_id,
@@ -25,12 +24,12 @@ export async function getPlayers(countryId) {
 
 export async function getCoaches(countryId) {
     const response = await SoccerApiClient.coaches(countryId);
-    const {data} = response;
-    if(!data) {
+    
+    if(!response?.data) {
         throw new Error('No response data');
     }
 
-    const result = data.map((coach) => {
+    const result = response.data.map((coach) => {
         return {
             id: coach.id,
             commonName: coach.common_name,

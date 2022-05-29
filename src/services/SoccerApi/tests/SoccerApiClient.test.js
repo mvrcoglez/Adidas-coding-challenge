@@ -1,20 +1,32 @@
-import React from 'react';
 import SoccerApiFixtureCoaches from '../Fixtures/SoccerApiFixture.coaches';
 import SoccerApiFixturePlayers from '../Fixtures/SoccerApiFixture.players';
+import * as SoccerApiClient from '../SoccerApiClient';
 import * as SoccerApiService from '../SoccerApiService';
 
-jest.mock('../SoccerApiService');
+jest.mock('../SoccerApiClient');
 
 describe('SoccerApi/SoccerApiClient', () => {
     it('returns a full player response', () => {
-        SoccerApiService.getPlayers.mockResolvedValue(SoccerApiFixturePlayers);
+        SoccerApiClient.players.mockResolvedValue(SoccerApiFixturePlayers);
 
-        SoccerApiService.getPlayers(4).then((response) => expect(response).toEqual(SoccerApiFixturePlayers));
+        SoccerApiService.getPlayers(4).then((response) => expect(response).toHaveLength(100));
     });
 
     it('returns a full coaches response', () => {
-        SoccerApiService.getPlayers.mockResolvedValue(SoccerApiFixtureCoaches);
+        SoccerApiClient.coaches.mockResolvedValue(SoccerApiFixtureCoaches);
 
-        SoccerApiService.getPlayers(4).then((response) => expect(response).toEqual(null));
+        SoccerApiService.getPlayers(4).then((response) => expect(response).toHaveLength(3));
+    });
+
+    it('returns an error when retrieveing players', () => {
+        const call = SoccerApiClient.players.mockResolvedValue(null);
+
+        SoccerApiService.getPlayers(4).then(() => expect(call).toThrow('No response data'));
+    });
+
+    it('returns an error when retrieveing coaches', () => {
+        const call = SoccerApiClient.coaches.mockResolvedValue(null);
+
+        SoccerApiService.getPlayers(4).catch(() => expect(call).toThrow('No response data'));
     });
 });
