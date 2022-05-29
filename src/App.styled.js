@@ -9,9 +9,12 @@ export const MainSection = styled.main`
 
 export const TeamSection = styled.div`
     display:flex;
+    flex-direction: column;
     gap: 16px;
-`;
-
-export const SelectionSection = styled.div`
+    
+    @media (min-width: 1024px) {
+        
+        flex-direction:row;
+    }
     
 `;

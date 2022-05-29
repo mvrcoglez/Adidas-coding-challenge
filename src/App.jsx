@@ -5,7 +5,7 @@ import CoachList from './components/CoachList/CoachList';
 import Header from './components/Header/Header';
 import PlayerList from './components/PlayerList/PlayerList';
 import Selection from './components/Selection/Selection';
-import { MainSection, SelectionSection, TeamSection } from './App.styled';
+import { MainSection, TeamSection } from './App.styled';
 
 const App = () => {
     return (
@@ -13,9 +13,9 @@ const App = () => {
             <Header>Your Adidas Team</Header>
             <MainSection>
                 <TeamSection>
+                    <Selection />
                     <CoachList />
                     <PlayerList />
-                    <Selection />
                 </TeamSection>
             </MainSection>
         </Provider>

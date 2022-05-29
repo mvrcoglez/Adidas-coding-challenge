@@ -8,6 +8,26 @@ const Selection = () => {
     const dispatch = useDispatch();
     const { coach, goalkeepers, defenders, midfielders, frontliners, count } = useSelector((state) => state.team);
     console.log({ coach, goalkeepers, defenders, midfielders, frontliners, count });
+
+    const deletePlayerButton = (item) => <Button onClick={() => dispatch(deletePlayer(item))}>Del</Button>;
+    const deleteCoachButton = () => <Button onClick={() => dispatch(deleteCoach())}>Del</Button>;
+
+    const renderPlayerList = (playerList) => {
+        return (
+            <ul>
+                {playerList &&
+                    playerList.map((item, key) => {
+                        return (
+                            <SelectionListItem key={key}>
+                                {item.commonName}
+                                {deletePlayerButton(item)}
+                            </SelectionListItem>
+                        );
+                    })}
+            </ul>
+        );
+    };
+
     return (
         <SelectionStyled>
             <h2>Team ({count}/16)</h2>
@@ -17,66 +37,26 @@ const Selection = () => {
                     <ul>
                         {coach && (
                             <SelectionListItem>
-                                {coach.commonName} <Button onClick={() => dispatch(deleteCoach())}>x</Button>
+                                {coach.commonName} {deleteCoachButton()}
                             </SelectionListItem>
                         )}
                     </ul>
                 </div>
                 <div>
                     <h3>Goalkeepers ({goalkeepers.length}/2)</h3>
-                    <ul>
-                        {goalkeepers &&
-                            goalkeepers.map((item, key) => {
-                                return (
-                                    <SelectionListItem key={key}>
-                                        {item.commonName}
-                                        <Button onClick={() => dispatch(deletePlayer(item))}>x</Button>
-                                    </SelectionListItem>
-                                );
-                            })}
-                    </ul>
+                    {renderPlayerList(goalkeepers)}
                 </div>
                 <div>
                     <h3>Defenders ({defenders.length}/4)</h3>
-                    <ul>
-                        {defenders &&
-                            defenders.map((item, key) => {
-                                return (
-                                    <SelectionListItem key={key}>
-                                        {item.commonName}
-                                        <Button onClick={() => dispatch(deletePlayer(item))}>x</Button>
-                                    </SelectionListItem>
-                                );
-                            })}
-                    </ul>
+                    {renderPlayerList(defenders)}
                 </div>
                 <div>
                     <h3>Midfielders ({midfielders.length}/4)</h3>
-                    <ul>
-                        {midfielders &&
-                            midfielders.map((item, key) => {
-                                return (
-                                    <SelectionListItem key={key}>
-                                        {item.commonName}
-                                        <Button onClick={() => dispatch(deletePlayer(item))}>x</Button>
-                                    </SelectionListItem>
-                                );
-                            })}
-                    </ul>
+                    {renderPlayerList(midfielders)}
                 </div>
                 <div>
                     <h3>Frontliners ({frontliners.length}/2)</h3>
-                    <ul>
-                        {frontliners &&
-                            frontliners.map((item, key) => {
-                                return (
-                                    <SelectionListItem key={key}>
-                                        {item.commonName}
-                                        <Button onClick={() => dispatch(deletePlayer(item))}>x</Button>
-                                    </SelectionListItem>
-                                );
-                            })}
-                    </ul>
+                    {renderPlayerList(frontliners)}
                 </div>
             </div>
         </SelectionStyled>

@@ -38,7 +38,7 @@ const Player = ({ player }) => {
             <span>{player.commonName}</span>
             <span>{renderPosition(player.position)}</span>
             <span>{FootType[player.foot] ?? 'Unknown'}</span>
-            <Button onClick={() => dispatch(addPlayer(player))}>+</Button>
+            <Button onClick={() => dispatch(addPlayer(player))}>Add</Button>
         </PlayerStyled>
     );
 };

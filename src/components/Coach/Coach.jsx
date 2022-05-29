@@ -20,7 +20,7 @@ const Coach = ({ coach }) => {
         <CoachStyled>
             <Image src={img} onError={onImageError} height="50px" />
             <span>{commonName}</span>
-            <Button onClick={() => dispatch(addCoach(coach))}>+</Button>
+            <Button onClick={() => dispatch(addCoach(coach))}>Add</Button>
         </CoachStyled>
     );
 };

@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 export const SelectionStyled = styled.div`
-min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    order: 1;
+    min-width: 200px;
     margin-top: 16px;
 `;
 
