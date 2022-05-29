@@ -1,5 +1,5 @@
 export default {
-    right: 'right',
-    left: 'left',
-    both: 'both',
+    right: 'Right',
+    left: 'Left',
+    both: 'Both',
 };
